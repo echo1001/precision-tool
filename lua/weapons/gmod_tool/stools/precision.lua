@@ -1121,8 +1121,14 @@ if CLIENT then
 		Panel:AddControl( "Checkbox", { Label = "Push/Pull as Percent (%) of target's depth", Command = "precision_nudgepercent", Description = "Unchecked = Exact units, Checked = takes % of width from target prop when pushing/pulling" } )
 
 
-		local user = LocalPlayer():GetInfoNum( "precision_user", 0 )
-		local mode = LocalPlayer():GetInfoNum( "precision_mode", 0 )
+		local user = 1
+		local mode = 1
+
+		if LocalPlayer() ~= nil and LocalPlayer().GetInfoNum then 
+			user = LocalPlayer():GetInfoNum( "precision_user", 0 )
+			mode = LocalPlayer():GetInfoNum( "precision_mode", 0 )
+		end
+
 		//Panel:AddControl( "Label", { Text = "Primary attack uses the tool's main mode.", Description	= "Select a mode and configure the options, be sure to try new things out!" }  )
 
 		local list = vgui.Create("DListView")
